@@ -31,6 +31,8 @@ describe('GildedRose', () => {
 
   describe('#updateQuality', () => {
     it('does something', () => {
+      //console.log('before updating quality', subject.items);
+
       subject.updateQuality();
 
       expect(dexterityVest.sellIn).toEqual(9)
@@ -47,6 +49,9 @@ describe('GildedRose', () => {
 
       expect(conjuredManaCake.sellIn).toEqual(2);
       expect(conjuredManaCake.quality).toEqual(4);
+
+      //console.log('');
+      //console.log('after updating quality', subject.items);
     });
   })
 })
