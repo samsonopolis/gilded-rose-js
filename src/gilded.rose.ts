@@ -18,7 +18,7 @@ export class GildedRose {
   }
 
   // consolidate duplicated code
-  // start with innermost if statements
+  // start with innermost code and work your way out for duplication
   // flip != signs
   // keep tests passing as much as possible the entire time
   // commit often after refactoring and tests are still green
@@ -31,7 +31,11 @@ export class GildedRose {
   }
 
   decreaseQuality(item) {
-    item.quality -= 1;
+    if (item.quality > 0) {
+      if (item.name != 'Sulfuras, Hand of Ragnaros') {
+        item.quality -= 1;
+      }
+    }  
   }
 
   updateQuality() {
@@ -39,11 +43,7 @@ export class GildedRose {
       const item = this.items[i];
 
       if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (item.quality > 0) {
-          if (item.name != 'Sulfuras, Hand of Ragnaros') {
-            this.decreaseQuality(item);
-          }
-        }
+        this.decreaseQuality(item);
       } else {
           this.increaseQuality(item);
           if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
@@ -61,11 +61,7 @@ export class GildedRose {
       if (item.sellIn < 0) {
         if (item.name != 'Aged Brie') {
           if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (item.quality > 0) {
-              if (item.name != 'Sulfuras, Hand of Ragnaros') {
-                this.decreaseQuality(item);
-              }
-            }
+            this.decreaseQuality(item);
           } else {
             item.quality = item.quality - item.quality
           }
