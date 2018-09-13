@@ -23,6 +23,7 @@ export class GildedRose {
   // keep tests passing as much as possible the entire time
   // commit often after refactoring and tests are still green
   // get rid of order dependent code
+  // get rid of if statements with || or &&
 
   increaseQuality(item) {
     if (item.quality < 50) {
@@ -40,17 +41,18 @@ export class GildedRose {
 
   updateQuality() {
     for (let item of this.items) {
-      if (item.name == 'Aged Brie' || item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+      if (item.name == 'Aged Brie') {
         this.increaseQuality(item);
-        if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-          if (item.sellIn < 11) {
-            this.increaseQuality(item);
-          }
-          if (item.sellIn < 6) {
-            this.increaseQuality(item);
-          }
-        } 
-      } else {
+      } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+        this.increaseQuality(item);
+        if (item.sellIn < 11) {
+          this.increaseQuality(item);
+        }
+        if (item.sellIn < 6) {
+          this.increaseQuality(item);
+        }
+      }
+       else {
         this.decreaseQuality(item);   
       }
       if (item.name != 'Sulfuras, Hand of Ragnaros') {
