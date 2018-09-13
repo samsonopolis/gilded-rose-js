@@ -73,6 +73,12 @@ class Sulfuras extends MyItem {
   update() {}
 }
 
+// Single Responsibility Pattern
+// tell dont ask
+// Factory pattern
+// Polymorphism
+// Inheritance
+
 class ItemFactory {
   static build(item) {
     if (item.name == 'Aged Brie') {
