@@ -10,6 +10,83 @@ export class Item {
   }
 }
 
+class MyItem {
+  constructor(public item) {}
+
+  update() {
+    this.updateQuality();
+    this.updateSellIn();
+  }
+
+  updateQuality() {
+    this.decreaseQuality();
+
+    if (this.item.sellIn <= 0) {
+      this.decreaseQuality();   
+    }
+  }
+
+  increaseQuality() {
+    if (this.item.quality < 50) {
+      this.item.quality += 1;
+    }
+  }
+
+  decreaseQuality() {
+    if (this.item.quality > 0) {
+      this.item.quality -= 1;
+    }  
+  }
+
+  updateSellIn() {
+    this.item.sellIn = this.item.sellIn - 1;
+  }
+}
+
+export class AgedBrie extends MyItem {
+  updateQuality() {
+    this.increaseQuality();
+
+    if (this.item.sellIn <= 0) {
+      this.increaseQuality();
+    }
+  }
+}
+
+class BackstagePasses extends MyItem {
+  updateQuality() {
+    this.increaseQuality();
+        
+    if (this.item.sellIn < 11) {
+      this.increaseQuality();
+    }
+    if (this.item.sellIn < 6) {
+      this.increaseQuality();
+    }
+    if (this.item.sellIn <= 0) {
+      this.item.quality = 0;
+    }
+  }
+}
+
+class Sulfuras extends MyItem {
+  update() {}
+}
+
+class ItemFactory {
+  static build(item) {
+    if (item.name == 'Aged Brie') {
+      return new AgedBrie(item);
+    } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+      return new BackstagePasses(item);
+    } else if (item.name === 'Sulfuras, Hand of Ragnaros') {
+      return new Sulfuras(item);
+    } else {
+      return new MyItem(item);
+    }
+  }
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -25,50 +102,10 @@ export class GildedRose {
   // get rid of order dependent code
   // get rid of if statements with || or &&
 
-  increaseQuality(item) {
-    if (item.quality < 50) {
-      item.quality += 1;
-    }
-  }
-
-  decreaseQuality(item) {
-    if (item.quality > 0) {
-      if (item.name != 'Sulfuras, Hand of Ragnaros') {
-        item.quality -= 1;
-      }
-    }  
-  }
-
   updateQuality() {
     for (let item of this.items) {
-      if (item.name == 'Aged Brie') {
-        this.increaseQuality(item);
-
-        if (item.sellIn <= 0) {
-          this.increaseQuality(item);
-        }
-      } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-        this.increaseQuality(item);
-        
-        if (item.sellIn < 11) {
-          this.increaseQuality(item);
-        }
-        if (item.sellIn < 6) {
-          this.increaseQuality(item);
-        }
-        if (item.sellIn <= 0) {
-          item.quality = 0;
-        }
-      } else {
-        this.decreaseQuality(item);
-
-        if (item.sellIn <= 0) {
-          this.decreaseQuality(item);   
-        }
-      }
-      if (item.name != 'Sulfuras, Hand of Ragnaros') {
-        item.sellIn = item.sellIn - 1;
-      }
+      const myItem = ItemFactory.build(item);
+      myItem.update();
     }
 
     return this.items;
