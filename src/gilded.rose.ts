@@ -45,8 +45,7 @@ export class GildedRose {
           }
         }
       } else {
-        if (item.quality < 50) {
-          item.quality += 1;
+          this.increaseQuality(item);
           if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
             if (item.sellIn < 11) {
               this.increaseQuality(item);
@@ -55,7 +54,6 @@ export class GildedRose {
               this.increaseQuality(item);
             }
           }
-        }
       }
       if (item.name != 'Sulfuras, Hand of Ragnaros') {
         item.sellIn = item.sellIn - 1;
