@@ -1,0 +1,89 @@
+export class Item {
+    name: string;
+    sellIn: number;
+    quality: number;
+
+    constructor(name, sellIn, quality) {
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+    }
+}
+
+export class ItemFactory {
+    static build(item) {
+        switch (item.name) {
+            case "Aged Brie":
+                return new AgedBrie(item);
+            case "Backstage passes to a TAFKAL80ETC concert":
+                return new BackStagePasses(item);
+            case "Sulfuras, Hand of Ragnaros":
+                return new Sasafrass(item);
+            default:
+                return new Product(item);
+        }
+    }
+}
+
+class Product {
+    constructor(public item) { }
+
+    update() {
+        this.updateQuality();
+        this.updateSellIn();
+    }
+
+    updateQuality() {
+        this.decreaseQuality();
+
+        if (this.item.sellIn <= 0) {
+            this.decreaseQuality();
+        }
+    }
+
+    updateSellIn() {
+        this.item.sellIn = this.item.sellIn - 1;
+    }
+
+    decreaseQuality() {
+        if (this.item.quality > 0) {
+            this.item.quality = this.item.quality - 1;
+        }
+    }
+
+    increaseQuality() {
+        if (this.item.quality < 50) {
+            this.item.quality = this.item.quality + 1;
+        }
+    }
+
+}
+
+class AgedBrie extends Product {
+    updateQuality() {
+        this.increaseQuality();
+        if (this.item.sellIn <= 0) {
+            this.increaseQuality();
+        }
+    }
+
+}
+
+class BackStagePasses extends Product {
+    updateQuality() {
+        this.increaseQuality();
+        if (this.item.sellIn < 11) {
+            this.increaseQuality();
+        }
+        if (this.item.sellIn < 6) {
+            this.increaseQuality();
+        }
+        if (this.item.sellIn <= 0) {
+            this.item.quality = 0;
+        }
+    }
+}
+
+class Sasafrass extends Product {
+    update() { }
+}
