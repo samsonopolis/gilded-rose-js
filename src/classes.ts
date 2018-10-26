@@ -67,19 +67,18 @@ class ConjuredItem extends Product {
     updateQuality() {
         if (this.item.sellIn >= 1) {
             this.decreaseQuality();
-            this.decreaseQuality();
         }
         if (this.item.sellIn <= 0) {
-            this.decreaseQuality();
-            this.decreaseQuality();
             this.decreaseQuality();
             this.decreaseQuality();
         }
     }
 
     decreaseQuality() {
-        if (this.item.quality > 0) {
-            this.item.quality = this.item.quality - 1;
+        if (this.item.quality >= 2) {
+            this.item.quality = this.item.quality - 2;
+        } else {
+            this.item.quality = 0;
         }
     }
 }
