@@ -1,5 +1,5 @@
 import { GildedRose } from '../src/gilded.rose';
-import { Item } from '../src/classes';
+import { Item } from '../src/classes'
 
 describe('GildedRose', () => {
     let subject;
@@ -25,7 +25,7 @@ describe('GildedRose', () => {
                 backstagePasses,
                 sulfuras,
                 agedBrie,
-                //conjuredManaCake,
+                conjuredManaCake,
                 //conjuredLavaCake
             ]);
         })
@@ -45,8 +45,8 @@ describe('GildedRose', () => {
             expect(agedBrie.sellIn).toEqual(3);
             expect(agedBrie.quality).toEqual(12);
 
-            //expect(conjuredManaCake.sellIn).toEqual(2);
-            //expect(conjuredManaCake.quality).toEqual(4);
+            expect(conjuredManaCake.sellIn).toEqual(2);
+            expect(conjuredManaCake.quality).toEqual(4);
 
             //expect(conjuredLavaCake.sellIn).toEqual(1);
             //expect(conjuredLavaCake.quality).toEqual(5);
@@ -65,69 +65,69 @@ describe('GildedRose', () => {
             })
         })
 
-        //describe('conjured mana cake', () => {
-        //describe('has quality of 1', () => {
-        //beforeEach(() => {
-        //conjuredManaCake.quality = 1
-        //})
+        describe('conjured mana cake', () => {
+            describe('has quality of 1', () => {
+                beforeEach(() => {
+                    conjuredManaCake.quality = 1
+                })
 
-        //it('does not decrease quality below 0', () => {
-        //subject.updateQuality();
-        //expect(conjuredManaCake.quality).toEqual(0)
-        //})
-        //})
+                it('does not decrease quality below 0', () => {
+                    subject.updateQuality();
+                    expect(conjuredManaCake.quality).toEqual(0)
+                })
+            })
 
-        //describe('has sellIn date of -1', () => {
-        //beforeEach(() => {
-        //conjuredManaCake.sellIn = -1
-        //})
+            describe('has sellIn date of -1', () => {
+                beforeEach(() => {
+                    conjuredManaCake.sellIn = -1
+                })
 
-        //describe('and quality is 6', () => {
-        //beforeEach(() => {
-        //conjuredManaCake.quality = 6;
-        //})
+                describe('and quality is 6', () => {
+                    beforeEach(() => {
+                        conjuredManaCake.quality = 6;
+                    })
 
-        //it('quality should be 2', () => {
-        //subject.updateQuality();
+                    it('quality should be 2', () => {
+                        subject.updateQuality();
 
-        //expect(conjuredManaCake.sellIn).toEqual(-2)
-        //expect(conjuredManaCake.quality).toEqual(2)
-        //})
-        //})
+                        expect(conjuredManaCake.sellIn).toEqual(-2)
+                        expect(conjuredManaCake.quality).toEqual(2)
+                    })
+                })
 
-        //describe('and quality is 0', () => {
-        //beforeEach(() => {
-        //conjuredManaCake.quality = 0;
-        //})
+                describe('and quality is 0', () => {
+                    beforeEach(() => {
+                        conjuredManaCake.quality = 0;
+                    })
 
-        //it('does not decrease quality below 0', () => {
-        //subject.updateQuality();
+                    it('does not decrease quality below 0', () => {
+                        subject.updateQuality();
 
-        //expect(conjuredManaCake.sellIn).toEqual(-2)
-        //expect(conjuredManaCake.quality).toEqual(0)
-        //})
-        //})
-        //})
+                        expect(conjuredManaCake.sellIn).toEqual(-2)
+                        expect(conjuredManaCake.quality).toEqual(0)
+                    })
+                })
+            })
 
-        ////describe('has sellIn date of 0', () => {
-        ////beforeEach(() => {
-        ////conjuredManaCake.sellIn = 0
-        ////})
+            ////describe('has sellIn date of 0', () => {
+            ////beforeEach(() => {
+            ////conjuredManaCake.sellIn = 0
+            ////})
 
-        ////describe('and quality is 6', () => {
-        ////beforeEach(() => {
-        ////conjuredManaCake.quality = 6;
-        ////})
+            ////describe('and quality is 6', () => {
+            ////beforeEach(() => {
+            ////conjuredManaCake.quality = 6;
+            ////})
 
-        ////it('does not decrease quality below 0', () => {
-        ////subject.updateQuality();
+            ////it('does not decrease quality below 0', () => {
+            ////subject.updateQuality();
 
-        ////expect(conjuredManaCake.sellIn).toEqual(-1)
-        ////expect(conjuredManaCake.quality).toEqual(0)
-        ////})
-        ////})
-        ////})
-        //})
+            ////expect(conjuredManaCake.sellIn).toEqual(-1)
+            ////expect(conjuredManaCake.quality).toEqual(0)
+            ////})
+            ////})
+            ////})
+        })
 
         //describe('conjured lava cake', () => {
         //describe('has quality of 1', () => {

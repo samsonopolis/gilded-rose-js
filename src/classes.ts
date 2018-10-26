@@ -19,6 +19,10 @@ export class ItemFactory {
                 return new BackStagePasses(item);
             case "Sulfuras, Hand of Ragnaros":
                 return new Sasafrass(item);
+            case "Conjured Mana Cake":
+                return new ConjuredItem(item);
+            case "Conjured Lava Cake":
+                return new ConjuredItem(item);
             default:
                 return new Product(item);
         }
@@ -57,6 +61,27 @@ class Product {
         }
     }
 
+}
+
+class ConjuredItem extends Product {
+    updateQuality() {
+        if (this.item.sellIn >= 1) {
+            this.decreaseQuality();
+            this.decreaseQuality();
+        }
+        if (this.item.sellIn <= 0) {
+            this.decreaseQuality();
+            this.decreaseQuality();
+            this.decreaseQuality();
+            this.decreaseQuality();
+        }
+    }
+
+    decreaseQuality() {
+        if (this.item.quality > 0) {
+            this.item.quality = this.item.quality - 1;
+        }
+    }
 }
 
 class AgedBrie extends Product {
